@@ -8,14 +8,14 @@
     <artifactId>mariadb-dist</artifactId> <!-- either mysql-dist or mariadb-dist -->
     <version>10.0.27</version> <!-- the actual MySQL or MariaDB version -->
     <packaging>pom</packaging>
-    <name>mariadb-10.0.27-linux-amd64</name> <!-- Human readable name for the distribution -->
-    <description>Portable MariaDB Maven artifact for Linux amd64</description> <!-- Description --> 
+    <name>mariadb-10.0.27-windows-amd64</name> <!-- Human readable name for the distribution -->
+    <description>Portable MariaDB Maven artifact for Windows amd64</description> <!-- Description --> 
     <url>https://github.com/mike10004/mysql-dists</url>
     <properties>
-        <distro.basename>mariadb-10.0.27-linux-x86_64</distro.basename> <!-- extensionless basename of the file to be downloaded -->
-        <distro.url>https://downloads.mariadb.org/f/mariadb-10.0.27/bintar-linux-x86_64/${distro.basename}.tar.gz</distro.url> <!-- URL of the file to be downloaded -->
-        <distro.sha1>6a96d704c43f541894709682f713f21a19ce051a</distro.sha1> <!-- sha1sum of the downloaded file -->
-        <assembly.id>linux-amd64</assembly.id> <!-- must match the classifier computed by jcabi-mysql-maven-plugin "classify" goal -->
+        <distro.basename>mariadb-10.0.27-winx64</distro.basename> <!-- extensionless basename of the file to be downloaded -->
+        <distro.url>https://downloads.mariadb.org/f/mariadb-10.0.27/winx64-packages/${distro.basename}.zip</distro.url> <!-- URL of the file to be downloaded -->
+        <distro.sha1>5e9196b2aa9aceaeba04c6b134d7a788acd9b25a</distro.sha1> <!-- sha1sum of the downloaded file -->
+        <assembly.id>windows-amd64</assembly.id> <!-- must match the classifier computed by jcabi-mysql-maven-plugin "classify" goal -->
     </properties>
     <profiles>
         <profile>
@@ -52,18 +52,17 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>untar-mysql-distribution</id>
+                        <id>unzip-mysql-distribution</id>
                         <phase>process-resources</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>tar</executable>
+                            <workingDirectory>${project.build.directory}</workingDirectory>
+                            <executable>unzip</executable>
                             <arguments>
-                                <argument>xf</argument>
-                                <argument>${project.build.directory}/${distro.basename}.tar.gz</argument>
-                                <argument>-C</argument>
-                                <argument>${project.build.directory}</argument>
+                                <argument>-q</argument>
+                                <argument>${project.build.directory}/${distro.basename}.zip</argument>
                             </arguments>
                         </configuration>
                     </execution>
