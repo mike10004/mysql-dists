@@ -48,22 +48,19 @@
                 </executions>
             </plugin>            
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
+                <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>unzip-mysql-distribution</id>
                         <phase>process-resources</phase>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>run</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>${project.build.directory}</workingDirectory>
-                            <executable>unzip</executable>
-                            <arguments>
-                                <argument>-q</argument>
-                                <argument>${project.build.directory}/${distro.basename}.zip</argument>
-                            </arguments>
+                            <tasks>
+							    <echo message="unzipping ${distro.basename}.zip"/>
+								<unzip src="${project.build.directory}/${distro.basename}.zip" dest="${project.build.directory}"/>
+							</tasks>
                         </configuration>
                     </execution>
                 </executions>
@@ -90,13 +87,17 @@
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
-                        <phase>verify</phase>
+                        <phase>deploy</phase>
                         <goals>
                             <goal>sign</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>            
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.2</version>
+			</plugin>
         </plugins>
     </build>
 </project>
