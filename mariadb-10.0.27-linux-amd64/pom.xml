@@ -5,21 +5,17 @@
         <artifactId>mysql-dists</artifactId>
         <version>1.0.1</version>
     </parent>
-    <artifactId>mariadb-dist</artifactId>
-    <version>10.0.27</version>
+    <artifactId>mariadb-dist</artifactId> <!-- either mysql-dist or mariadb-dist -->
+    <version>10.0.27</version> <!-- the actual MySQL or MariaDB version -->
     <packaging>pom</packaging>
-    <name>mariadb-10.0.27-linux-amd64</name> <!-- e.g. mariadb-freebsd10 -->
-    <description>Portable MariaDB Maven artifact for Linux amd64</description>
+    <name>mariadb-10.0.27-linux-amd64</name> <!-- Human readable name for the distribution -->
+    <description>Portable MariaDB Maven artifact for Linux amd64</description> <!-- Description --> 
     <url>https://github.com/mike10004/mysql-dists</url>
-    <!-- https://downloads.mariadb.org/f/mariadb-10.0.27/bintar-linux-x86_64/mariadb-10.0.27-linux-x86_64.tar.gz -->
     <properties>
-        <distro.basename>mariadb-10.0.27-linux-x86_64</distro.basename>
-        <distro.url>https://downloads.mariadb.org/f/mariadb-10.0.27/bintar-linux-x86_64/${distro.basename}.tar.gz</distro.url>
-        <distro.sha1>6a96d704c43f541894709682f713f21a19ce051a</distro.sha1>
-        <distro.os>Linux</distro.os>
-        <distro.arch>amd64</distro.arch>
-        <assembly.id>linux-${distro.arch}</assembly.id> <!-- e.g. freebsd-amd64 -->
-        <skipTests>false</skipTests>
+        <distro.basename>mariadb-10.0.27-linux-x86_64</distro.basename> <!-- extensionless basename of the file to be downloaded -->
+        <distro.url>https://downloads.mariadb.org/f/mariadb-10.0.27/bintar-linux-x86_64/${distro.basename}.tar.gz</distro.url> <!-- URL of the file to be downloaded -->
+        <distro.sha1>6a96d704c43f541894709682f713f21a19ce051a</distro.sha1> <!-- sha1sum of the downloaded file -->
+        <assembly.id>linux-amd64</assembly.id> <!-- must match the classifier computed by jcabi-mysql-maven-plugin "classify" goal -->
     </properties>
     <profiles>
         <profile>
@@ -29,7 +25,6 @@
                 <distro.url>http://localhost/~${user.name}/mysql-dists-test/${distro.basename}.tar.gz</distro.url>
                 <distro.sha1>ae45bbd93e847b5304ed6ce901c1df2e8c8fcac1</distro.sha1>
                 <assembly.id>practice-distro</assembly.id>
-                <skipTests>true</skipTests>
             </properties>
         </profile>
     </profiles>

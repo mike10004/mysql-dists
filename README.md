@@ -19,10 +19,11 @@ the userdir module and put the `practice/ziptest-1.0.tar.gz` tarball
 in your shared directory such that it is downloadable from the URL
 **http://localhost/~USERNAME/mysql-dists-test/ziptest-1.0.tar.gz**.
 
-To create a new MySQL distribution, make a copy of the `template` 
-directory and change the `pom.xml` to reflect the correct filenames
-and URLs of the MySQL distribution. Run `mvn install` in your new 
-directory to the new MySQL distribution zip to your local repository.
+To create a new MySQL distribution, make a copy of an existing subdirectory
+and change values in `pom.xml`, as indicated by comments in that file, to 
+reflect the correct parameters for the target MySQL distribution. Then 
+run `mvn install` in your new directory to the new MySQL distribution zip to 
+your local repository.
 
 To confirm that it works, in the `example` directory, run
 
