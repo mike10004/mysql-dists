@@ -19,13 +19,6 @@
                 <mysql-dist.version>10.0.27</mysql-dist.version>
             </properties>
         </profile>
-        <profile>
-            <id>mysql-5.7.14</id>
-            <properties>
-                <mysql-dist.artifactId>mysql-dist</mysql-dist.artifactId>
-                <mysql-dist.version>5.7.14</mysql-dist.version>
-            </properties>
-        </profile>
     </profiles>
     <build>
         <plugins>
