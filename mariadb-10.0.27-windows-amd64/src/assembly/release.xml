@@ -9,6 +9,13 @@
     <fileSets>
         <fileSet>
             <outputDirectory></outputDirectory>
+            <directory>${basedir}/src/supplemental</directory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <outputDirectory></outputDirectory>
             <directory>${project.build.directory}/${distro.basename}</directory>
             <includes>
                 <include>**/*</include>
