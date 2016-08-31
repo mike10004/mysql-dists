@@ -5,21 +5,17 @@
         <artifactId>mysql-dists</artifactId>
         <version>1.0.1</version>
     </parent>
-    <artifactId>mariadb-dist</artifactId>
-    <version>10.0.27</version>
+    <artifactId>mysql-dist</artifactId>
+    <version>5.7.14</version>
     <packaging>pom</packaging>
-    <name>mariadb-10.0.27-linux-amd64</name> <!-- e.g. mariadb-freebsd10 -->
-    <description>Portable MariaDB Maven artifact for Linux amd64</description>
+    <name>mysql-5.7.14-linux-amd64</name> <!-- e.g. mariadb-freebsd10 -->
+    <description>Portable MySQL Maven artifact for [OPERATING_SYSTEM_AND_VERSION]</description>
     <url>https://github.com/mike10004/mysql-dists</url>
-    <!-- https://downloads.mariadb.org/f/mariadb-10.0.27/bintar-linux-x86_64/mariadb-10.0.27-linux-x86_64.tar.gz -->
     <properties>
-        <distro.basename>mariadb-10.0.27-linux-x86_64</distro.basename>
-        <distro.url>https://downloads.mariadb.org/f/mariadb-10.0.27/bintar-linux-x86_64/${distro.basename}.tar.gz</distro.url>
-        <distro.sha1>6a96d704c43f541894709682f713f21a19ce051a</distro.sha1>
-        <distro.os>Linux</distro.os>
-        <distro.arch>amd64</distro.arch>
-        <assembly.id>linux-${distro.arch}</assembly.id> <!-- e.g. freebsd-amd64 -->
-        <skipTests>false</skipTests>
+        <distro.basename>mysql-5.7.14-linux-glibc2.5-x86_64</distro.basename> <!-- e.g. mariadb-10.0.27-linux-x86_64 -->
+        <distro.url>https://cdn.mysql.com/Downloads/MySQL-5.7/${distro.basename}.tar.gz</distro.url>
+        <distro.sha1>233d52b700b153fdf6b08fa65885ff80b282b3df</distro.sha1>
+        <assembly.id>linux-amd64</assembly.id> <!-- e.g. freebsd-amd64 -->
     </properties>
     <profiles>
         <profile>
@@ -29,7 +25,6 @@
                 <distro.url>http://localhost/~${user.name}/mysql-dists-test/${distro.basename}.tar.gz</distro.url>
                 <distro.sha1>ae45bbd93e847b5304ed6ce901c1df2e8c8fcac1</distro.sha1>
                 <assembly.id>practice-distro</assembly.id>
-                <skipTests>true</skipTests>
             </properties>
         </profile>
     </profiles>
@@ -91,18 +86,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>            
         </plugins>
     </build>
 </project>
