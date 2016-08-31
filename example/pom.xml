@@ -91,9 +91,9 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.jcabi</groupId>
+                <groupId>com.github.mike10004</groupId>
                 <artifactId>jcabi-mysql-maven-plugin</artifactId>
-                <version>0.9</version>
+                <version>1.0r1-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <id>mysql-test</id>
