@@ -9,7 +9,7 @@
     <version>5.7.14</version>
     <packaging>pom</packaging>
     <name>mysql-5.7.14-linux-amd64</name> <!-- e.g. mariadb-freebsd10 -->
-    <description>Portable MySQL Maven artifact for [OPERATING_SYSTEM_AND_VERSION]</description>
+    <description>Portable MySQL Maven artifact for Linux</description>
     <url>https://github.com/mike10004/mysql-dists</url>
     <properties>
         <distro.basename>mysql-5.7.14-linux-glibc2.5-x86_64</distro.basename> <!-- e.g. mariadb-10.0.27-linux-x86_64 -->
