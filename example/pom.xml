@@ -13,6 +13,13 @@
     </properties>
     <profiles>
         <profile>
+            <id>mariadb-10.1.17</id>
+            <properties>
+                <mysql-dist.artifactId>mariadb-dist</mysql-dist.artifactId>
+                <mysql-dist.version>10.1.17</mysql-dist.version>
+            </properties>
+        </profile>
+        <profile>
             <id>mariadb-10.0.27</id>
             <properties>
                 <mysql-dist.artifactId>mariadb-dist</mysql-dist.artifactId>

@@ -1,0 +1,106 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.github.mike10004</groupId>
+        <artifactId>mysql-dists</artifactId>
+        <version>1.0.3</version>
+    </parent>
+    <artifactId>mariadb-dist</artifactId> <!-- either mysql-dist or mariadb-dist -->
+    <version>10.1.17</version> <!-- the actual MySQL or MariaDB version -->
+    <packaging>pom</packaging>
+    <name>mariadb-10.1.17-linux-amd64</name> <!-- Human readable name for the distribution -->
+    <description>Portable MariaDB Maven artifact for Linux amd64</description> <!-- Description --> 
+    <url>https://github.com/mike10004/mysql-dists</url>
+    <properties>
+        <distro.basename>mariadb-10.1.17-linux-glibc_214-x86_64</distro.basename> <!-- extensionless basename of the file to be downloaded -->
+        <distro.url>https://downloads.mariadb.org/f/mariadb-10.1.17/bintar-linux-glibc_214-x86_64/${distro.basename}.tar.gz</distro.url> <!-- URL of the file to be downloaded -->
+        <distro.sha1>79ba063b266ccfdee79fd8a9ac005e6d2a38f03b</distro.sha1> <!-- sha1sum of the downloaded file -->
+        <assembly.id>linux-amd64</assembly.id> <!-- must match the classifier computed by jcabi-mysql-maven-plugin "classify" goal -->
+    </properties>
+    <profiles>
+        <profile>
+            <id>practice</id>
+            <properties>
+                <distro.basename>ziptest-1.0</distro.basename>
+                <distro.url>http://localhost/~${user.name}/mysql-dists-test/${distro.basename}.tar.gz</distro.url>
+                <distro.sha1>ae45bbd93e847b5304ed6ce901c1df2e8c8fcac1</distro.sha1>
+                <assembly.id>practice-distro</assembly.id>
+            </properties>
+        </profile>
+    </profiles>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <artifactId>download-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>download-mysql-distribution-tarball</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>wget</goal>
+                        </goals>
+                        <configuration>
+                            <url>${distro.url}</url>
+                            <sha1>${distro.sha1}</sha1>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>untar-mysql-distribution</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>tar</executable>
+                            <arguments>
+                                <argument>xf</argument>
+                                <argument>${project.build.directory}/${distro.basename}.tar.gz</argument>
+                                <argument>-C</argument>
+                                <argument>${project.build.directory}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>    
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>distro-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/assembly/release.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>            
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
