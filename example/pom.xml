@@ -100,7 +100,7 @@
             <plugin>
                 <groupId>com.github.mike10004</groupId>
                 <artifactId>jcabi-mysql-maven-plugin</artifactId>
-                <version>1.0r1-SNAPSHOT</version>
+                <version>1.0r1</version>
                 <executions>
                     <execution>
                         <id>mysql-test</id>
