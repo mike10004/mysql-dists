@@ -57,9 +57,9 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
+                            <target>
 								<unzip src="${project.build.directory}/${distro.basename}.zip" dest="${project.build.directory}"/>
-							</tasks>
+							</target>
                         </configuration>
                     </execution>
                 </executions>
