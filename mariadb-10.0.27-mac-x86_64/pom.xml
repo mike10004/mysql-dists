@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.github.mike10004</groupId>
         <artifactId>mysql-dists</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
     </parent>
     <artifactId>mariadb-dist</artifactId>
     <version>10.0.27</version>

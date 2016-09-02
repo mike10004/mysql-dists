@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.github.mike10004</groupId>
         <artifactId>mysql-dists</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
     </parent>
     <artifactId>mysql-dist</artifactId> <!-- either mysql-dist or mariadb-dist -->
     <version>5.7.14</version> <!-- the actual MySQL or MariaDB version -->
