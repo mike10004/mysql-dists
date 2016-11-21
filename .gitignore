@@ -1,3 +1,7 @@
 /archives/
 /*/target/
 /*/nbproject/
+*.iml
+/.idea/
+pom.xml.versionsBackup
+
